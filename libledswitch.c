@@ -65,17 +65,6 @@ void send_1(void)
 }
 
 /**
- * Sends a Tri-State "F" Bit
- *            _     ___
- * Waveform: | |___|   |_
- */
-void send_f(void)
-{
-	transmit(1, 3);
-	transmit(3, 1);
-}
-
-/**
  * Sends a "Sync" Bit
  *                       _
  * Waveform Protocol 1: | |_______________________________
