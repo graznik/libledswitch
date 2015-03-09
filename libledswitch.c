@@ -238,7 +238,7 @@ int socket_ctrl(Encoder *enc, uint group, uint socket, uint data)
 	bcm2835_gpio_fsel(PIN, BCM2835_GPIO_FSEL_OUTP);
 
 	/* Send the codeword */
-	send_tris(codeword, 10);
+	send_codeword(codeword, 10);
 
 	return 0;
 }
