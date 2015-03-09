@@ -143,57 +143,6 @@ int pt2260_init(Encoder *pt2260)
 }
 
 /**
- * Configure struct for the PT2262 encoder
- * @param *pt2262     Pointer to a pt2262 instance
- */
-int pt2262_init(Encoder *pt2262)
-{
-	char *groups[] = {"FFFF", "0FFF", "F0FF", "00FF", "FF0F", "0F0F", "F00F", "000F",
-			  "FFF0", "0FF0", "F0F0", "00F0", "FF00", "0F00", "F000", "0000"};
-	char *sockets[] = {"F0FF", "FF0F", "FFF0", "FFFF"};
-	char *data[] = {"FFF0", "FF0F"};
-	int i;
-
-	/* 16 possible switch groups (A-P in Intertechno code) */
-	pt2262->ngroups = 16;
-	pt2262->groups = malloc(pt2262->ngroups * sizeof(char *));
-	if (pt2262->groups == NULL) {
-		fputs("Error: Cannot malloc\n", stdout);
-		return -1;
-	}
-	/* Four possible switches per group */
-	pt2262->nsockets = 4;
-	pt2262->sockets = malloc(pt2262->nsockets * sizeof(char *));
-	if (pt2262->sockets == NULL) {
-		fputs("Error: Cannot malloc\n", stdout);
-		return -1;
-	}
-
-	/* Data is either "On" or "Off" */
-	pt2262->ndata = 2;
-	pt2262->data = malloc(pt2262->ndata * sizeof(char *));
-	if (pt2262->data == NULL) {
-		fputs("Error: Cannot malloc\n", stdout);
-		return -1;
-	}
-
-	for (i = 0; i < pt2262->ngroups; i++) {
-		pt2262->groups[i] = groups[i];
-	}
-
-	for (i = 0; i < pt2262->nsockets; i++) {
-		pt2262->sockets[i] =  sockets[i];
-	}
-
-
-	for (i = 0; i < pt2262->ndata; i++) {
-		pt2262->data[i] = data[i];
-	}
-
-	return 0;
-}
-
-/**
  * Emulate a encoder chip
  * @param *enc          Pointer to a encoder instance
  * @param uint group    Socket group
