@@ -18,10 +18,10 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 /**
  * Send a code word
- * @param codeword   /^[10FS]*$/  -> see get_codeword
+ * @param codeword   /^[10S]*$/  -> see get_codeword
  * @param ntimes     Number of times to send the code word
  */
-void send_tris(char *codeword, int ntimes)
+void send_codeword(char *codeword, int ntimes)
 {
 	int n;
 
@@ -32,9 +32,6 @@ void send_tris(char *codeword, int ntimes)
 			switch(codeword[i]) {
 			case '0':
 				send_0();
-				break;
-			case 'F':
-				send_f();
 				break;
 			case '1':
 				send_1();
