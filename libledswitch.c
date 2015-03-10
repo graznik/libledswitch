@@ -44,7 +44,7 @@ void send_codeword(char *codeword, int ntimes)
 }
 
 /**
- * Sends a Tri-State "0" Bit
+ * Sends a "0" Bit
  *            _
  * Waveform: | |___
  */
@@ -53,7 +53,7 @@ void send_0(void)
 	transmit(1, 3);
 }
 /**
- * Sends a Tri-State "1" Bit
+ * Sends a "1" Bit
  *            ___
  * Waveform: |   |_
  */
@@ -76,7 +76,7 @@ void send_sync(void)
 void transmit(int nhigh, int nlow)
 {
 	/*
-	 * FIXME: 350 is the pulse length in us.
+	 * FIXME: 440 is the pulse length in us.
 	 * This should be a parameter in the future,
 	 * depending on the encoder chip within the
 	 * remote control.
@@ -89,7 +89,7 @@ void transmit(int nhigh, int nlow)
 
 /**
  * Configure struct for the XXX encoder
- * @param xxx     Pointer to a xxx instance
+ * @param *xxx     Pointer to a xxx instance
  */
 int xxx_init(Encoder *xxx)
 {
@@ -101,7 +101,7 @@ int xxx_init(Encoder *xxx)
 
 /**
  * Emulate an encoder chip
- * @param *enc   Pointer to a encoder instance
+ * @param *enc   Pointer to an encoder instance
  * @param *data  Data to send
  */
 int socket_ctrl(Encoder *enc, char *data)
@@ -159,7 +159,7 @@ int led_send(uint dev, uint data)
 		xxx_init(&encoder);
 		break;
 	default:
-		syslog(LOG_ERR, "Received unknown socket type %d", dev);
+		syslog(LOG_ERR, "Received unknown encoder type %d", dev);
 		return EXIT_FAILURE;
 	}
 
