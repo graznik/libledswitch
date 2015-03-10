@@ -104,7 +104,7 @@ int xxx_init(Encoder *xxx)
  * @param *enc   Pointer to an encoder instance
  * @param *data  Data to send
  */
-int socket_ctrl(Encoder *enc, char *data)
+int led_ctrl(Encoder *enc, char *data)
 {
 	/* Calculate code word size */
 	size_t s = strlen(enc->preamble) + strlen(data) + 1;
@@ -164,7 +164,7 @@ int led_send(uint dev, uint data)
 	}
 
 	codeword = byte_to_binary(data);
-	socket_ctrl(&encoder, codeword);
+	led_ctrl(&encoder, codeword);
 
 	return EXIT_SUCCESS;
 }

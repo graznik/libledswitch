@@ -35,6 +35,6 @@ void send_1(void);
 void send_sync(void);
 void transmit(int, int);
 int  xxx_init(Encoder *);
-int  socket_ctrl(Encoder *, char *);
+int  led_ctrl(Encoder *, char *);
 char *byte_to_binary(uint);
 int  led_send(uint, uint);
