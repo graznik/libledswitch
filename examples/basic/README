@@ -11,7 +11,7 @@ $ source ./setenv64.sh
 $ cd examples/basic
 $ make
 $ file ledsend
-  rsssend: ELF 32-bit LSB  executable, ARM, EABI5 version 1 (SYSV)
+  ledsend: ELF 32-bit LSB  executable, ARM, EABI5 version 1 (SYSV)
 $ scp ledsend user@rpi:~/
 $ ssh user@rpi
 $ ./ledsend 0 1
