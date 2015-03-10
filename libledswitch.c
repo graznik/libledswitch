@@ -73,7 +73,6 @@ void send_sync(void)
 	transmit(1, 31);
 }
 
-
 void transmit(int nhigh, int nlow)
 {
 	/*
