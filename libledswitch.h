@@ -24,6 +24,18 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 
 #define PIN RPI_GPIO_P1_07 /* GPIO 4 */
 
+#define MODE_N    0b10001
+#define MODE_P    0b01011
+#define POWER     0b00001
+#define SPEED_N   0b01101
+#define SPEED_P   0b01111
+#define LIGHT     0b00100
+#define BRIGHT_N  0b00110
+#define BRIGHT_P  0b00101
+#define PC100     0b00111
+#define PC50      0b01000
+#define PC25      0b01001
+
 typedef struct{
 	char *preamble;
 	uint pulse_len;
