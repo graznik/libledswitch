@@ -1,0 +1,59 @@
+ledswitchd
+=========
+
+ledswitchd is a Raspberry Pi network daemon process for controlling dimming
+controls for LED strip lights.
+
+ledswitchd links against libledswitch [1] and uses function socket_send() of
+libledswitch to control a LED strip.
+
+Installation (Raspberry Pi)
+===========================
+ $ cd libledswitch/examples/network/
+ $ make
+ # make install
+
+ledswitchd is going to be installed to /usr/local/bin.
+
+Run ledswitchd at startup
+=======================
+
+Arch Linux
+----------
+
+ # emacs /usr/lib/systemd/system/ledswitchd.service
+
+   	[Unit]
+	Description=LED Service Daemon
+	After=network.target
+
+	[Service]
+	ExecStart=/usr/local/bin/ledswitchd
+	Type=simple
+	Nice=-20
+	
+	[Install]
+	WantedBy=multi-user.target
+
+ 
+ # systemctl daemon-reload
+ # systemctl enable ledswitchd
+
+
+Usage
+=======================
+ledswitchd is listening on port 5001 for commands from
+connected clients. It needs the following information
+to switch a socket:
+
+- dev:  Vendor ID (check the wiki for the list of supported devices)
+- data: Hex ID of the remote control function
+
+See [2] for a detailed description.
+
+Netcat
+----------
+echo -n "01" | nc 192.168.2.19 5001
+
+[2] https://github.com/graznik/libledswitch
+[3] https://github.com/graznik/libledswitch/wiki#usage
