@@ -36,17 +36,17 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
 #define PC50      0b01000
 #define PC25      0b01001
 
-typedef struct{
+struct encoder{
 	char *preamble;
 	uint pulse_len;
-} Encoder;
+};
 
 void send_codeword(char *, int);
 void send_0(void);
 void send_1(void);
 void send_sync(void);
 void transmit(int, int);
-int  xxx_init(Encoder *);
-int  led_ctrl(Encoder *, char *);
+int  xxx_init(struct encoder *);
+int  led_ctrl(struct encoder *, char *);
 char *byte_to_binary(uint);
 int  led_send(uint, uint);
