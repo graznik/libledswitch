@@ -91,7 +91,7 @@ void transmit(int nhigh, int nlow)
  * Configure struct for the XXX encoder
  * @param *xxx     Pointer to a xxx instance
  */
-int xxx_init(Encoder *xxx)
+int xxx_init(struct encoder *xxx)
 {
 	xxx->preamble = "1010110001100000000";
 	xxx->pulse_len = 440;
@@ -104,7 +104,7 @@ int xxx_init(Encoder *xxx)
  * @param *enc   Pointer to an encoder instance
  * @param *data  Data to send
  */
-int led_ctrl(Encoder *enc, char *data)
+int led_ctrl(struct encoder *enc, char *data)
 {
 	/* Calculate code word size */
 	size_t s = strlen(enc->preamble) + strlen(data) + 1;
@@ -147,7 +147,7 @@ char *byte_to_binary(uint x)
 
 int led_send(uint dev, uint data)
 {
-	Encoder encoder;
+	struct encoder enc;
 	char *codeword;
 
 #ifdef DEBUG
@@ -156,7 +156,7 @@ int led_send(uint dev, uint data)
 
 	switch (dev) {
 	case 0:
-		xxx_init(&encoder);
+		xxx_init(&enc);
 		break;
 	default:
 		syslog(LOG_ERR, "Received unknown encoder type %d", dev);
@@ -164,7 +164,7 @@ int led_send(uint dev, uint data)
 	}
 
 	codeword = byte_to_binary(data);
-	led_ctrl(&encoder, codeword);
+	led_ctrl(&enc, codeword);
 
 	return EXIT_SUCCESS;
 }
